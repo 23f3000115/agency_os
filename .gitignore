@@ -1,2 +1,4 @@
-.streamlit
+.git
+.streamlit/secrets.toml
+__pycache__
 myenv
