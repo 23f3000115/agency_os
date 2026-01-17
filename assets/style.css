@@ -1,0 +1,113 @@
+/* --- GLOBAL APP STYLING --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.stApp {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc; /* Very light cool gray background */
+}
+
+/* --- HEADERS --- */
+h1, h2, h3 {
+    color: #1e293b;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* --- SIDEBAR --- */
+section[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid #e2e8f0;
+}
+
+section[data-testid="stSidebar"] h1 {
+    font-size: 1.5rem !important;
+    color: #4f46e5; /* Indigo brand color */
+}
+
+/* --- CARDS & CONTAINERS --- */
+/* This targets st.container(border=True) and Expander */
+div[data-testid="stVerticalBlockBorderWrapper"], .streamlit-expanderHeader {
+    background-color: #ffffff;
+    border-radius: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* --- METRIC CARDS --- */
+div[data-testid="stMetric"] {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+div[data-testid="stMetricLabel"] {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+div[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* --- BUTTONS --- */
+.stButton > button {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease-in-out !important;
+    border: none !important;
+}
+
+/* Primary Action Buttons (Inferred by placement) */
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+/* Make Form Submit buttons pop */
+div[data-testid="stForm"] .stButton > button {
+    background-color: #4f46e5 !important;
+    color: white !important;
+    width: 100%;
+}
+
+/* --- INPUT FIELDS --- */
+input, textarea, select {
+    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px !important;
+}
+
+input:focus, textarea:focus {
+    border-color: #4f46e5 !important;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* --- DATAFRAMES / TABLES --- */
+div[data-testid="stDataFrame"] {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* --- ALERTS (Success/Error/Info) --- */
+div[data-testid="stNotification"] {
+    border-radius: 10px !important;
+    border: none !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}

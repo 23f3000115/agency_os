@@ -1,0 +1,7 @@
+streamlit
+supabase
+pandas
+geopy
+streamlit-js-eval
+plotly
+watchdog
