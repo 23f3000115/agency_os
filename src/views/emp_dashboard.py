@@ -12,14 +12,13 @@ from src.auth import logout_user
 from src.views.chat_component import render_chat_widget
 
 def render_emp_dashboard():
-    # Sidebar
     st.sidebar.title(f"Pioneer View: {st.session_state.get('user_name', 'Employee')}")
     menu = st.sidebar.radio("My Workspace", ["Time Clock", "My Tasks", "Team Chat"])
     
     if st.sidebar.button("Logout"):
         logout_user()
 
-    # --- 1. SMART TIME CLOCK ---
+    # 1. SMART TIME CLOCK
     if menu == "Time Clock":
         st.header("⏱️ Daily Attendance")
         
