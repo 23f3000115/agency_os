@@ -51,7 +51,7 @@ python -m venv myenv
 source myenv/bin/activate  # Windows: myenv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r req.txt
 
 #secrets.toml
 [supabase]

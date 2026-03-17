@@ -1,17 +1,20 @@
-# Use the official lightweight Python image
+# Use a lightweight Python image
 FROM python:3.9-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy requirement file and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install system dependencies (needed for psycopg2 and compiling packages)
+RUN apt-get update && apt-get install -y gcc libpq-dev && rm -rf /var/lib/apt/lists/*
 
-# Copy the rest of the app code
+# Copy requirements and install them
+COPY req.txt .
+RUN pip install --no-cache-dir -r req.txt
+
+# Copy the rest of your app code
 COPY . .
 
-# Expose the port Streamlit runs on
+# Expose the Streamlit port
 EXPOSE 8501
 
 # Command to run the app
