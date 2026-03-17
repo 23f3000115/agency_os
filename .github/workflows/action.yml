@@ -25,6 +25,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
 
+      # --- NEW STEP: INJECT THE SECRET ---
+      - name: Inject Streamlit Secrets
+        run: |
+          mkdir -p .streamlit
+          echo "[connections.postgresql]" > .streamlit/secrets.toml
+          echo "url = \"${{ secrets.DB_URL }}\"" >> .streamlit/secrets.toml
+
       - name: Build and push image (latest, linux/amd64)
         uses: docker/build-push-action@v4
         with:
@@ -32,7 +39,6 @@ jobs:
           file: ./Dockerfile
           push: true 
           platforms: linux/amd64
-          # Changed from portfolio to agency-os
           tags: ghcr.io/${{ github.repository_owner }}/agency-os:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
