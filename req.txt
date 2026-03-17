@@ -1,7 +1,9 @@
 streamlit
-supabase
 pandas
 geopy
 streamlit-js-eval
 plotly
+bcrypt 
+psycopg2-binary 
+sqlalchemy
 watchdog

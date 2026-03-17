@@ -1,68 +1,52 @@
 import streamlit as st
-from supabase import create_client
-
-# REMOVED: from src.services.supabase_client import supabase
-# We do not want a global variable anymore.
+import bcrypt
+from sqlalchemy import text
 
 def init_session():
-    """
-    Initialize session state variables AND a unique Supabase client
-    for this specific user session.
-    """
-    # 1. Create a Unique Supabase Client for this Session
-    if "supabase" not in st.session_state:
-        try:
-            # Load credentials from secrets.toml
-            url = st.secrets["supabase"]["url"]
-            key = st.secrets["supabase"]["key"]
-            
-            # create_client() is now called INSIDE the session check
-            # This ensures every browser tab gets its own isolated connection
-            st.session_state.supabase = create_client(url, key)
-        except Exception as e:
-            st.error(f"❌ critical: Database connection failed. {e}")
-            st.stop()
-
-    # 2. Initialize User State Placeholders
+    """Initializes default session state variables on first load."""
+    if 'authenticated' not in st.session_state:
+        st.session_state.authenticated = False
     if 'user' not in st.session_state:
         st.session_state.user = None
-    if 'role' not in st.session_state:
-        st.session_state.role = None
+    if 'user_role' not in st.session_state:
+        st.session_state.user_role = None
     if 'user_name' not in st.session_state:
-        st.session_state.user_name = ""
+        st.session_state.user_name = None
 
-def login_user(email, password):
-    """Attempt to log in using the session-specific client."""
+def hash_password(password: str) -> str:
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+
+def authenticate_user(email, password):
+    """Verifies credentials against Postgres and sets up the session."""
+    conn = st.connection("postgresql", type="sql")
     
-    # Grab the isolated client we created in init_session
-    db = st.session_state.supabase
-
-    try:
-        # 1. Authenticate
-        response = db.auth.sign_in_with_password({"email": email, "password": password})
-        user = response.user
+    with conn.session as s:
+        sql = text("SELECT id, full_name, email, password_hash, role FROM users WHERE email = :email")
+        user = s.execute(sql, {"email": email}).mappings().fetchone()
         
-        # 2. Fetch Profile Role
-        # Using 'db' ensures we use the TOKEN of the user we just logged in
-        data = db.table("profiles").select("role, full_name").eq("id", user.id).execute()
+    if user and verify_password(password, user["password_hash"]):
+        class SessionUser: 
+            pass
         
-        if data.data:
-            st.session_state.user = user
-            st.session_state.role = data.data[0]['role']
-            st.session_state.user_name = data.data[0]['full_name']
-            st.rerun() 
-        else:
-            st.error("User profile not found. Contact Admin.")
+        # SAFETY NET: If the database role is missing/NULL, force it to 'owner'
+        fetched_role = user["role"]
+        if not fetched_role:
+            fetched_role = "owner"
             
-    except Exception as e:
-        st.error(f"Login failed: {e}")
+        st.session_state.user = SessionUser()
+        st.session_state.user.id = str(user["id"])
+        st.session_state.user_name = user["full_name"]
+        st.session_state.user_role = fetched_role
+        st.session_state.authenticated = True
+        return True
+            
+    return False
 
 def logout_user():
-    # Sign out using the session client
-    if "supabase" in st.session_state:
-        st.session_state.supabase.auth.sign_out()
-    
-    st.session_state.user = None
-    st.session_state.role = None
-    st.session_state.user_name = ""
+    """Clears the session and sends the user back to login."""
+    st.session_state.clear()
     st.rerun()

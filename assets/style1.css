@@ -1,0 +1,272 @@
+/* --- GLOBAL APP STYLING --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+
+
+/* Improve radio button appearance */
+
+section[data-testid="stSidebar"] div[data-testid="stRadio"] input {
+
+    display: none;
+
+}
+/* VARIABLE DEFINITIONS FOR EASY TWEAKING */
+:root {
+    --bg-color: #faf9f6;        /* Alabaster / Off-White */
+    --text-color: #1c1c1c;      /* Onyx Black */
+    --gold-primary: #c5a059;    /* Matte Gold */
+    --gold-hover: #b08d55;      /* Darker Gold */
+    --gold-faint: #f9f5eb;      /* Very light beige for backgrounds */
+    --border-color: #e6e2d8;    /* Warm Grey border */
+}
+
+.stApp {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color); 
+    color: var(--text-color); 
+}
+
+/* --- HEADERS --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #111111 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* --- SIDEBAR --- */
+section[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid var(--border-color);
+}
+
+section[data-testid="stSidebar"] h1 {
+    font-size: 1.5rem !important;
+    color: var(--gold-primary) !important; /* Gold Brand Color */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Fix sidebar text color */
+section[data-testid="stSidebar"] span, section[data-testid="stSidebar"] p {
+    color: #444444 !important;
+}
+
+/* --- CARDS & CONTAINERS --- */
+/* This targets st.container(border=True) and Expander */
+div[data-testid="stVerticalBlockBorderWrapper"], .streamlit-expanderHeader {
+    background-color: #ffffff;
+    border-radius: 8px !important; /* Sharper corners for classier look */
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); /* Very subtle shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    border-color: var(--gold-primary) !important; /* Gold border on hover */
+    box-shadow: 0 10px 20px -5px rgba(197, 160, 89, 0.15); /* Golden Glow */
+}
+
+/* --- METRIC CARDS --- */
+div[data-testid="stMetric"] {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+div[data-testid="stMetricLabel"] {
+    font-size: 0.85rem;
+    color: #666666 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+div[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #000000 !important;
+    font-weight: 700;
+}
+
+/* --- BUTTONS --- */
+/* Standard Button (Ghost Style) */
+.stButton > button {
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease-in-out !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: #ffffff;
+    color: #1c1c1c !important;
+}
+
+/* Hover effect */
+.stButton > button:hover {
+    transform: translateY(-1px);
+    border-color: var(--gold-primary) !important;
+    color: var(--gold-primary) !important;
+}
+
+/* Primary Form Submit Buttons (Solid Gold) */
+div[data-testid="stForm"] .stButton > button {
+    background-color: var(--gold-primary) !important;
+    color: white !important;
+    border: none !important;
+    width: 100%;
+}
+
+div[data-testid="stForm"] .stButton > button:hover {
+    background-color: var(--gold-hover) !important;
+    box-shadow: 0 4px 12px rgba(197, 160, 89, 0.4);
+}
+
+/* --- INPUT FIELDS --- */
+input, textarea, select, div[data-baseweb="select"] > div {
+    background-color: #ffffff !important;
+    color: #1c1c1c !important;
+    border-radius: 6px !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Focus states (Gold Glow) */
+input:focus, textarea:focus, div[data-baseweb="select"] > div:focus-within {
+    border-color: var(--gold-primary) !important;
+    box-shadow: 0 0 0 1px var(--gold-primary) !important;
+}
+
+/* --- DATAFRAMES --- */
+div[data-testid="stDataFrame"] {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+}
+
+/* --- ALERTS --- */
+div[data-testid="stNotification"] {
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: #ffffff !important;
+}
+
+/* --- CHATBOX THEME (Black & Gold) --- */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+div[data-testid="stChatMessage"] {
+    animation: fadeInUp 0.4s ease-out forwards;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 1px solid transparent;
+}
+
+/* USER MESSAGE (Gold Tint) */
+div[data-testid="stChatMessage"][data-testid="user"] {
+    background-color: var(--gold-faint); /* Very light beige */
+    border: 1px solid #e5dcc5;
+}
+
+/* ASSISTANT MESSAGE (White) */
+div[data-testid="stChatMessage"]:not([data-testid="user"]) {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+}
+
+div[data-testid="stChatMessageContent"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #1c1c1c !important;
+}
+
+div[data-testid="stChatMessage"] p {
+    font-size: 0.75rem;
+    color: #888888 !important;
+}
+
+/* --- REFINED CHAT INPUT (Forced Light Theme) --- */
+
+/* 1. THE CAPSULE WRAPPER */
+div[data-testid="stChatInput"] > div {
+    /* Force White Background regardless of theme */
+    background-color: #ffffff !important; 
+    border: 1px solid #e6e2d8 !important; 
+    border-radius: 40px !important;
+    
+    /* Shadow & Alignment */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    align-items: center !important;
+    padding-right: 10px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* 2. THE TEXT AREA */
+div[data-testid="stChatInput"] textarea {
+    background-color: transparent !important; /* Let the white wrapper show through */
+    color: #1c1c1c !important; /* Force Black Text */
+    caret-color: #c5a059 !important; /* Gold Cursor */
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    padding-left: 20px !important;
+}
+
+/* Placeholder Text Color (Ensure it's visible but subtle) */
+div[data-testid="stChatInput"] textarea::placeholder {
+    color: #9ca3af !important; 
+    opacity: 1 !important;
+}
+
+/* 3. FOCUS GLOW */
+div[data-testid="stChatInput"] > div:focus-within {
+    border-color: #c5a059 !important; /* Gold Border */
+    box-shadow: 0 4px 25px rgba(197, 160, 89, 0.25) !important;
+    transform: translateY(-2px);
+}
+
+/* 4. SEND BUTTON (Fixed Alignment) */
+/* We first ensure the parent wrapper is a reference point */
+div[data-testid="stChatInput"] > div {
+    position: relative !important; 
+}
+
+/* Now we float the button exactly where we want it */
+div[data-testid="stChatInput"] button {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: 15px !important; /* Pulls it away from the extreme edge */
+    
+    /* Reset margins and backgrounds */
+    background: transparent !important;
+    border: none !important;
+    color: #c5a059 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    /* Ensure it sits on top of text */
+    z-index: 5 !important;
+}
+
+/* Hover Effect */
+div[data-testid="stChatInput"] button:hover {
+    color: #b08d55 !important;
+    background: transparent !important;
+    transform: translateY(-50%) scale(1.15) !important; /* Keep the centering while scaling */
+}
+
+/* 5. PARENT CONTAINER CLEANUP */
+div[data-testid="stChatInput"] {
+    background-color: transparent !important;
+    padding-bottom: 1rem !important;
+}
+

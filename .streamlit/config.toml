@@ -1,0 +1,7 @@
+[theme]
+base = "light"
+primaryColor = "#c5a059"        # Matte Gold
+backgroundColor = "#faf9f6"     # Alabaster (Off-White)
+secondaryBackgroundColor = "#ffffff"
+textColor = "#1c1c1c"           # Onyx Black
+font = "sans serif"

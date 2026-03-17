@@ -1,113 +1,983 @@
-/* --- GLOBAL APP STYLING --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* ------------------------------------------------ */
+/* AGENCY OS — PREMIUM STREAMLIT UI THEME           */
+/* ------------------------------------------------ */
 
-.stApp {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc; /* Very light cool gray background */
+/* --- GLOBAL FONT --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+
+/* ------------------------------------------------ */
+/* APP STYLE SIDEBAR NAVIGATION                     */
+/* ------------------------------------------------ */
+
+/* Sidebar container */
+
+section[data-testid="stSidebar"] {
+
+    padding-top: 1.5rem;
+
 }
 
-/* --- HEADERS --- */
-h1, h2, h3 {
-    color: #1e293b;
+
+/* Sidebar radio group wrapper */
+
+section[data-testid="stSidebar"] div[data-testid="stRadio"] {
+
+    gap: 6px;
+
+}
+
+
+/* Each sidebar navigation item */
+
+section[data-testid="stSidebar"] div[data-testid="stRadio"] label {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 500;
+
+    color: #444444 !important;
+
+    margin-bottom: 6px;
+
+}
+
+
+/* Hover state */
+
+section[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover {
+
+    background-color: var(--gold-faint);
+
+    color: var(--gold-primary) !important;
+
+    transform: translateX(3px);
+
+}
+
+
+/* Selected tab */
+
+section[data-testid="stSidebar"] div[data-testid="stRadio"] input:checked + div {
+
+    background-color: var(--gold-faint);
+
+    border-left: 3px solid var(--gold-primary);
+
+    padding-left: 11px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+    color: var(--gold-primary) !important;
+
+}
+
+/* --- VARIABLE DEFINITIONS --- */
+
+:root {
+
+    --bg-color: #faf9f6;
+    --text-color: #1c1c1c;
+
+    --gold-primary: #c5a059;
+    --gold-hover: #b08d55;
+    --gold-faint: #f9f5eb;
+
+    --border-color: #e6e2d8;
+
+}
+
+
+/* ------------------------------------------------ */
+/* GLOBAL MOTION SYSTEM                             */
+/* ------------------------------------------------ */
+
+* {
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+@keyframes pageFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ------------------------------------------------ */
+/* APP ROOT                                         */
+/* ------------------------------------------------ */
+
+.stApp {
+
+    font-family: 'Inter', sans-serif;
+
+    background-color: var(--bg-color);
+
+    color: var(--text-color);
+
+    animation: pageFade 0.4s ease-out;
+
+}
+
+
+/* ------------------------------------------------ */
+/* HEADERS                                          */
+/* ------------------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+
+    color: #111111 !important;
+
     font-weight: 700 !important;
+
     letter-spacing: -0.5px;
+
 }
 
 h1 {
+
     margin-bottom: 1.5rem !important;
+
 }
 
-/* --- SIDEBAR --- */
+
+/* ------------------------------------------------ */
+/* SIDEBAR (PREMIUM GLASS STYLE)                    */
+/* ------------------------------------------------ */
+
 section[data-testid="stSidebar"] {
-    background-color: #ffffff;
-    border-right: 1px solid #e2e8f0;
+
+    background: rgba(255,255,255,0.75);
+
+    backdrop-filter: blur(16px);
+
+    border-right: 1px solid var(--border-color);
+
+    box-shadow: 4px 0 20px rgba(0,0,0,0.03);
+
 }
 
 section[data-testid="stSidebar"] h1 {
+
     font-size: 1.5rem !important;
-    color: #4f46e5; /* Indigo brand color */
+
+    color: var(--gold-primary) !important;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
 }
 
-/* --- CARDS & CONTAINERS --- */
-/* This targets st.container(border=True) and Expander */
-div[data-testid="stVerticalBlockBorderWrapper"], .streamlit-expanderHeader {
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] p {
+
+    color: #444444 !important;
+
+}
+
+section[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover {
+
+    color: var(--gold-primary) !important;
+
+    transform: translateX(2px);
+
+}
+
+
+/* ------------------------------------------------ */
+/* CARDS & CONTAINERS                               */
+/* ------------------------------------------------ */
+
+div[data-testid="stVerticalBlockBorderWrapper"],
+.streamlit-expanderHeader {
+
     background-color: #ffffff;
-    border-radius: 12px !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s, box-shadow 0.2s;
+
+    border-radius: 10px !important;
+
+    border: 1px solid var(--border-color) !important;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.03),
+        0 2px 4px rgba(0,0,0,0.02);
+
+}
+
+
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+
+    transform: translateY(-2px);
+
+    border-color: var(--gold-primary) !important;
+
+    box-shadow:
+        0 14px 30px rgba(0,0,0,0.06),
+        0 6px 12px rgba(197,160,89,0.08);
+
+}
+
+
+/* ------------------------------------------------ */
+/* METRIC CARDS                                     */
+/* ------------------------------------------------ */
+
+div[data-testid="stMetric"] {
+
+    background-color: #ffffff;
+
+    padding: 1.2rem;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border-color);
+
+    text-align: center;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+
+    position: relative;
+
+}
+
+
+div[data-testid="stMetric"]::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold-primary),
+        transparent
+    );
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+
+}
+
+
+div[data-testid="stMetric"]:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+
+}
+
+div[data-testid="stMetric"]:hover::after {
+
+    opacity: 1;
+
+}
+
+
+div[data-testid="stMetricLabel"] {
+
+    font-size: 0.85rem;
+
+    color: #666666 !important;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+div[data-testid="stMetricValue"] {
+
+    font-size: 1.8rem;
+
+    color: #000000 !important;
+
+    font-weight: 700;
+
+}
+
+
+/* ------------------------------------------------ */
+/* BUTTONS                                          */
+/* ------------------------------------------------ */
+
+.stButton > button {
+
+    border-radius: 8px !important;
+
+    font-weight: 600 !important;
+
+    padding: 0.55rem 1.2rem !important;
+
+    border: 1px solid var(--border-color) !important;
+
+    background-color: #ffffff;
+
+    color: #1c1c1c !important;
+
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+
+}
+
+
+.stButton > button:hover {
+
+    transform: translateY(-1px);
+
+    border-color: var(--gold-primary) !important;
+
+    color: var(--gold-primary) !important;
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+
+}
+
+
+.stButton > button:active {
+
+    transform: translateY(1px);
+
+}
+
+
+/* FORM SUBMIT BUTTON */
+
+div[data-testid="stForm"] .stButton > button {
+
+    background-color: var(--gold-primary) !important;
+
+    color: white !important;
+
+    border: none !important;
+
+    width: 100%;
+
+}
+
+
+div[data-testid="stForm"] .stButton > button:hover {
+
+    background-color: var(--gold-hover) !important;
+
+    box-shadow: 0 4px 12px rgba(197,160,89,0.4);
+
+}
+
+
+/* ------------------------------------------------ */
+/* INPUT FIELDS                                     */
+/* ------------------------------------------------ */
+
+input, textarea, select, div[data-baseweb="select"] > div {
+
+    background-color: #ffffff !important;
+
+    color: #1c1c1c !important;
+
+    border-radius: 8px !important;
+
+    border: 1px solid var(--border-color) !important;
+
+    padding: 8px 10px !important;
+
+}
+
+
+input:focus,
+textarea:focus,
+div[data-baseweb="select"] > div:focus-within {
+
+    border-color: var(--gold-primary) !important;
+
+    box-shadow: 0 0 0 2px rgba(197,160,89,0.15) !important;
+
+}
+
+
+/* ------------------------------------------------ */
+/* DATAFRAMES                                       */
+/* ------------------------------------------------ */
+
+div[data-testid="stDataFrame"] {
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background-color: white;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+
+}
+
+
+/* ------------------------------------------------ */
+/* EXPANDERS                                        */
+/* ------------------------------------------------ */
+
+.streamlit-expanderHeader {
+
+    border-radius: 8px !important;
+
+    padding: 0.7rem !important;
+
+}
+
+.streamlit-expanderHeader:hover {
+
+    background-color: var(--gold-faint);
+
+}
+
+
+/* ------------------------------------------------ */
+/* ALERTS                                           */
+/* ------------------------------------------------ */
+
+div[data-testid="stNotification"] {
+
+    border-radius: 8px !important;
+
+    border: 1px solid var(--border-color) !important;
+
+    background-color: #ffffff !important;
+
+}
+
+
+/* ------------------------------------------------ */
+/* CHAT MESSAGES                                    */
+/* ------------------------------------------------ */
+
+@keyframes fadeInUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+div[data-testid="stChatMessage"] {
+
+    animation: fadeInUp 0.4s ease-out forwards;
+
+    border-radius: 12px;
+
+    margin-bottom: 8px;
+
+    border: 1px solid transparent;
+
+}
+
+
+/* USER MESSAGE */
+
+div[data-testid="stChatMessage"][data-testid="user"] {
+
+    background-color: var(--gold-faint);
+
+    border: 1px solid #e5dcc5;
+
+}
+
+
+/* ASSISTANT MESSAGE */
+
+div[data-testid="stChatMessage"]:not([data-testid="user"]) {
+
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+
+}
+
+
+div[data-testid="stChatMessageContent"] {
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+
+    color: #1c1c1c !important;
+
+}
+
+
+div[data-testid="stChatMessage"] p {
+
+    font-size: 0.75rem;
+
+    color: #888888 !important;
+
+}
+
+
+/* ------------------------------------------------ */
+/* CHAT INPUT                                       */
+/* ------------------------------------------------ */
+
+div[data-testid="stChatInput"] > div {
+
+    background-color: #ffffff !important;
+
+    border: 1px solid #e6e2d8 !important;
+
+    border-radius: 40px !important;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+
+    align-items: center !important;
+
+    padding-right: 10px !important;
+
+    position: relative !important;
+
+}
+
+
+div[data-testid="stChatInput"] textarea {
+
+    background-color: transparent !important;
+
+    color: #1c1c1c !important;
+
+    caret-color: #c5a059 !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    padding-top: 15px !important;
+
+    padding-bottom: 15px !important;
+
+    padding-left: 20px !important;
+
+}
+
+
+div[data-testid="stChatInput"] textarea::placeholder {
+
+    color: #9ca3af !important;
+
+}
+
+
+div[data-testid="stChatInput"] > div:focus-within {
+
+    border-color: #c5a059 !important;
+
+    box-shadow: 0 4px 25px rgba(197,160,89,0.25) !important;
+
+    transform: translateY(-2px);
+
+}
+
+
+div[data-testid="stChatInput"] button {
+
+    position: absolute !important;
+
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    right: 15px !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    color: #c5a059 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    z-index: 5 !important;
+
+}
+
+
+div[data-testid="stChatInput"] button:hover {
+
+    color: #b08d55 !important;
+
+    transform: translateY(-50%) scale(1.15) !important;
+
+}
+
+
+div[data-testid="stChatInput"] {
+
+    background-color: transparent !important;
+
+    padding-bottom: 1rem !important;
+
+}
+
+
+/* ------------------------------------------------ */
+/* LAYOUT SPACING                                   */
+/* ------------------------------------------------ */
+
+.block-container {
+
+    padding-top: 2rem;
+
+    padding-bottom: 3rem;
+
+}
+
+/* ------------------------------------------------ */
+/* SIDEBAR TOGGLE BUTTON FIX                        */
+/* ------------------------------------------------ */
+
+/* Ensure Streamlit header is visible */
+
+header[data-testid="stHeader"] {
+
+    background: transparent !important;
+    border-bottom: none !important;
+    height: 48px;
+
+}
+
+/* Ensure the toggle button is always visible */
+
+button[kind="header"] {
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 8px;
+
+    background: white !important;
+    border: 1px solid var(--border-color) !important;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+    transition: all 0.2s ease;
+
+}
+
+
+/* Hover interaction */
+
+button[kind="header"]:hover {
+
+    border-color: var(--gold-primary) !important;
+
+    color: var(--gold-primary) !important;
+
+    transform: scale(1.05);
+
+}
+
+
+/* Make sure icon inside toggle is visible */
+
+button[kind="header"] svg {
+
+    color: #333333 !important;
+
+}
+
+
+/* Prevent it from getting hidden by layout */
+
+header[data-testid="stHeader"] * {
+
+    visibility: visible !important;
+
+}
+
+/* ------------------------------------------------ */
+/* CLEAN SELECT DROPDOWN (REMOVE RANDOM DOTS)       */
+/* ------------------------------------------------ */
+
+/* Hide internal decorative separators */
+
+div[data-baseweb="select"] span[role="img"] {
+    display: none !important;
+}
+
+/* Remove stray bullet elements */
+
+div[data-baseweb="select"] div::before,
+div[data-baseweb="select"] div::after {
+    content: none !important;
+}
+
+/* Hide internal indicator dots */
+
+div[data-baseweb="select"] svg circle {
+    display: none !important;
+}
+
+/* Clean dropdown layout */
+
+div[data-baseweb="select"] {
+
+    background: white !important;
+
+    border-radius: 8px !important;
+
+    border: 1px solid var(--border-color) !important;
+
+}
+
+
+/* ================================================= */
+/* AGENCY OS — LUXURY MOTION PACK (PURE CSS)         */
+/* ================================================= */
+
+/* --- GLOBAL MOTION SYSTEM --- */
+
+* {
+    transition:
+        transform 0.22s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.22s cubic-bezier(.2,.8,.2,1),
+        border-color 0.18s ease,
+        background-color 0.18s ease,
+        color 0.18s ease;
+}
+
+/* --- SMOOTH PAGE TRANSITION --- */
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.stApp {
+    animation: pageEnter 0.45s ease-out;
+}
+
+/* --- FLOATING CARDS --- */
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    transform: translateY(0);
 }
 
 div[data-testid="stVerticalBlockBorderWrapper"]:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 28px rgba(0,0,0,0.08),
+        0 4px 10px rgba(0,0,0,0.04);
 }
 
-/* --- METRIC CARDS --- */
+/* --- METRIC CARD ANIMATION --- */
+
+@keyframes metricPop {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 div[data-testid="stMetric"] {
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    text-align: center;
+    animation: metricPop 0.35s ease-out;
 }
 
-div[data-testid="stMetricLabel"] {
-    font-size: 0.9rem;
-    color: #64748b;
-    font-weight: 600;
-}
+/* Stagger effect */
 
-div[data-testid="stMetricValue"] {
-    font-size: 1.8rem;
-    color: #0f172a;
-    font-weight: 700;
-}
+div[data-testid="stMetric"]:nth-child(1) { animation-delay: .04s; }
+div[data-testid="stMetric"]:nth-child(2) { animation-delay: .08s; }
+div[data-testid="stMetric"]:nth-child(3) { animation-delay: .12s; }
+div[data-testid="stMetric"]:nth-child(4) { animation-delay: .16s; }
 
-/* --- BUTTONS --- */
-.stButton > button {
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    padding: 0.5rem 1rem !important;
-    transition: all 0.2s ease-in-out !important;
-    border: none !important;
-}
+/* --- BUTTON HOVER PHYSICS --- */
 
-/* Primary Action Buttons (Inferred by placement) */
 .stButton > button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
 
-/* Make Form Submit buttons pop */
-div[data-testid="stForm"] .stButton > button {
-    background-color: #4f46e5 !important;
-    color: white !important;
-    width: 100%;
+.stButton > button:active {
+    transform: scale(0.96);
 }
 
-/* --- INPUT FIELDS --- */
-input, textarea, select {
-    border-radius: 8px !important;
-    border: 1px solid #cbd5e1 !important;
-    padding: 10px !important;
+/* --- SIDEBAR NAVIGATION MOTION --- */
+
+section[data-testid="stSidebar"] label {
+    transition: transform 0.18s ease, color 0.18s ease;
 }
 
-input:focus, textarea:focus {
-    border-color: #4f46e5 !important;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+section[data-testid="stSidebar"] label:hover {
+    transform: translateX(4px);
 }
 
-/* --- DATAFRAMES / TABLES --- */
+/* --- CHAT MESSAGE ENTRY --- */
+
+div[data-testid="stChatMessage"] {
+    animation: pageEnter 0.35s ease-out;
+}
+
+
+/* ================================================= */
+/* PREMIUM SAAS DASHBOARD LAYOUT PACK                */
+/* ================================================= */
+
+
+/* --- DASHBOARD SPACING RHYTHM --- */
+
+.block-container {
+
+    padding-top: 2.2rem;
+    padding-bottom: 3rem;
+
+}
+
+
+/* --- METRIC ROW LAYOUT --- */
+
+[data-testid="stMetric"] {
+
+    min-height: 95px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+/* Equal spacing between metric rows */
+
+div[data-testid="column"] {
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+}
+
+
+/* --- DASHBOARD PANEL CONTAINERS --- */
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+
+    padding: 1.2rem;
+
+}
+
+
+/* --- CHART / DATA PANELS --- */
+
+div[data-testid="stPlotlyChart"],
 div[data-testid="stDataFrame"] {
-    border: 1px solid #e2e8f0;
+
+    background: #ffffff;
+
     border-radius: 10px;
-    overflow: hidden;
+
+    padding: 0.6rem;
+
 }
 
-/* --- ALERTS (Success/Error/Info) --- */
-div[data-testid="stNotification"] {
-    border-radius: 10px !important;
-    border: none !important;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+
+/* --- SECTION SEPARATION --- */
+
+h1, h2, h3 {
+
+    margin-top: 1.6rem !important;
+
 }
+
+
+/* --- CLEAN DIVIDER --- */
+
+hr {
+
+    border: none;
+
+    border-top: 1px solid var(--border-color);
+
+    margin: 1.6rem 0;
+
+}
+
+
+/* --- EXPANDER PANELS --- */
+
+.streamlit-expanderHeader {
+
+    font-weight: 600;
+
+    padding: 0.8rem !important;
+
+}
+
+
+/* --- BETTER GRID BALANCE --- */
+
+[data-testid="column"] > div {
+
+    height: 100%;
+
+}
+
