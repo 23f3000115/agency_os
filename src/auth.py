@@ -25,7 +25,7 @@ def authenticate_user(email, password):
     conn = st.connection("postgresql", type="sql")
     
     with conn.session as s:
-        sql = text("SELECT id, full_name, email, password_hash, role FROM users WHERE email = :email")
+        sql = "SELECT id, full_name, email, password_hash, role FROM users WHERE email = :email"
         user = s.execute(sql, {"email": email}).mappings().fetchone()
         
     if user and verify_password(password, user["password_hash"]):
