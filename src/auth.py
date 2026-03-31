@@ -26,7 +26,7 @@ def authenticate_user(email, password):
     
     with conn.session as s:
         sql = "SELECT id, full_name, email, password_hash, role FROM users WHERE email = :email"
-        user = s.execute(sql, {"email": email}).mappings().fetchone()
+        user = s.execute(text(sql), {"email": email}).mappings().fetchone()
         
     if user and verify_password(password, user["password_hash"]):
         class SessionUser: 
